@@ -33,7 +33,24 @@ STRRAT is a nasty piece of work. It's written in Java, communicates over custom 
 I followed a **NetworkMiner-first triage pipeline** for this investigation. Here's why: when you're staring at 11,000+ packets, you don't want to dive into Wireshark blind. NetworkMiner gives you the 30,000-foot view -- hosts, protocols, files, credentials, the whole picture -- in under a minute. From there, you pivot into Wireshark for the deep stuff. It's a workflow that's saved me hours, and it's the one I document here.
 
 ---
+---
+## Technical & Operational Skills Demonstrated
+Network Forensics & Packet Analysis: Executed end-to-end packet forensic triage across 11,562 packets (~9m 45s duration) using a two-stage triage pipeline (NetworkMiner-first rapid NFAT triage pivoted to Wireshark deep packet inspection).
 
+Malware Traffic Dissection & Protocol Reversal: Identified and dissected proprietary, non-standard C2 communication protocols operating over high-port TCP (141.98.10.79:12132), reconstructing full bidirectional TCP conversations to reveal client-server handshakes, fingerprinting probes, and heartbeats.
+
+Host & Network IOC Extraction: Extracted hardcoded indicators of compromise including anomalous external IP addresses, port numbers, affected victim endpoint identities (DESKTOP-SKBR25F, 172.16.1.66), user accounts (ccollier), and cryptographic PCAP hashes via capinfos.
+
+Payload Deobfuscation & Data Decoding: Utilized CyberChef for decoding, data transformation, and parsing raw packet payload hex dumps to uncover exfiltrated reconnaissance strings and system fingerprinting metadata.
+
+Threat Intelligence & Infrastructure Attribution: Correlated external indicators against Open-Source Intelligence (OSINT) repositories (AbuseIPDB, VirusTotal) to confirm geographic hosting (Lithuania), past attack telemetry, and historical actor abuse records.
+
+Detection Engineering (SIEM & YARA): Authored tailored Wireshark display filters, Splunk SPL hunting queries, and custom YARA byte signatures designed to catch STRRAT Java archive components and custom handshake signatures across production endpoints and network security monitoring sensors.
+
+Framework Alignment: Mapped malicious runtime observations directly to the MITRE ATT&CK framework across Command and Control (Non-Standard Port, Application Layer Protocol), Discovery (System Information Discovery), and Collection (Data from Local System).
+
+
+---
 ## Table of Contents
 
 The full investigation report lives in [`PROJECT_REPORT.md`](./PROJECT_REPORT.md). Here's where to find everything:
